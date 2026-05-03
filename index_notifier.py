@@ -108,8 +108,7 @@ class WeChatNotifier:
         if result.get("code") == 0 or result.get("data", {}).get("errno") == 0:
             return True
         else:
-            print(f"发送失败: {result}")
-            return False
+            raise Exception(f"发送失败: {result}")
 
 
 def get_valuation_label(dividend_yield: float, pe: float) -> dict:
