@@ -1,4 +1,4 @@
-name: wsdaily Job Runner
+name: WeChat Notify Job Runner
 
 on:
 
@@ -37,11 +37,11 @@ jobs:
           sed -i "s/__KEY__/${{ secrets.WeChat_Key}}/g" config_wechat.py
         shell: bash   
         
-      - name: 运行脚本
+      - name: 运行python
         run: python index_notifier.py  > output.log
          
       - name: Upload output
         uses: actions/upload-artifact@main
         with:
           name: ${{ env.WRT_DATE }}
-          path: ./wsdaily_linux_amd64/output.log
+          path: ./output.log
