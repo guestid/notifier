@@ -38,7 +38,7 @@ jobs:
         shell: bash   
         
       - name: 运行python
-        run: python index_notifier.py  > output.log
+        run: python index_notifier.py
          
       - name: Upload output
         uses: actions/upload-artifact@main
