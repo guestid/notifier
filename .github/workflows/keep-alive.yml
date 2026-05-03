@@ -1,0 +1,21 @@
+name: Keep Repo Alive
+on:
+  schedule:
+    - cron: '0 0 */30 * *'  # 每 30 天 0 点 UTC 执行一次
+  workflow_dispatch:        # 允许手动触发
+
+jobs:
+  keep-alive:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Create empty commit
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git commit --allow-empty -m "chore: keep repo active (auto-generated)"
+          git push
