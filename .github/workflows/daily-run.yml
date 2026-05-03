@@ -39,9 +39,4 @@ jobs:
         
       - name: 运行python
         run: python index_notifier.py
-         
-      - name: Upload output
-        uses: actions/upload-artifact@main
-        with:
-          name: ${{ env.WRT_DATE }}
-          path: ./output.log
+
