@@ -14,29 +14,22 @@ jobs:
   run-daily:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v5
 
-      - name: 设置 Python 环境
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"  # 指定你要的版本，如 3.9、3.10、3.12
-        
       - name: Initialization Values
         run: |
           echo "WRT_DATE=$(TZ=UTC-8 date +"%y.%m.%d-%H.%M.%S")" >> $GITHUB_ENV
           sudo timedatectl set-timezone Asia/Shanghai
-        
-      - name: 安装依赖
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt  # 你的依赖文件
 
+      - uses: actions/checkout@v6
       - name: Generate config
         run: |      
           sed -i "s/__KEY__/${{ secrets.WeChat_Key}}/g" config_wechat.py
-        shell: bash   
+        shell: bash 
         
-      - name: 运行python
-        run: python index_notifier.py
-
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+          pip-install: -r requirements.txt
+      - run: python index_notifier.py
+ 
