@@ -3,8 +3,8 @@ name: WeChat Notify Job Runner
 on:
 
   schedule:
-    #每天18点31
-    - cron: 31 8 * * *
+    #每天19点31
+    - cron: 31 9 * * *
   #手动清理
   workflow_dispatch:
 
