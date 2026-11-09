@@ -6,7 +6,7 @@ on:
 
 jobs:
   keep-alive:
-    runs-on: Ubuntu 26.04
+    runs-on: ubuntu-26.04
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
